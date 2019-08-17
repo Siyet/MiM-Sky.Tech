@@ -1,5 +1,6 @@
 const createRouter = require('@arangodb/foxx/router');
 const { db, query } = require("@arangodb");
+const request = require("@arangodb/request");
 
 const helipad_router = createRouter();
 const collectionName = 'helipads'
@@ -37,3 +38,15 @@ helipad_router.get('/helipads/min', function(req, res){
 .response(['application/json'], 'helipads')
 .summary('get all helipads in minimalist style')
 .description('Get all helipads in minimalist style');
+
+helipad_router.get('/helipads/:id/info', function(req, res){
+    const response = request.get(`https://fpln.ru/api/landing/${req.pathParams.id}`);
+    if (response.status < 400) {
+        res.send(response.json)
+    }
+    // let helipads = query`for i in ${collection} return {id:i._key, geopoint:i.position}`
+    // res.send(helipads);
+})
+.response(['application/json'], 'helipads')
+.summary('get all helipads')
+.description('Get all helipads');
