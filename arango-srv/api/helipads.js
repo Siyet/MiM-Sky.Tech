@@ -31,7 +31,7 @@ helipad_router.get('/helipads/:id', function (req, res) {
 .description('Get helipad by id');
 
 helipad_router.get('/helipads/min', function(req, res){
-    let helipads = query`for i in ${collection} return {id:i._key, geopoint:{lat:i.lat, lon:i.lon}}`
+    let helipads = query`for i in ${collection} return {id:i._key, geopoint:i.position}`
     res.send(helipads);
 })
 .response(['application/json'], 'helipads')
