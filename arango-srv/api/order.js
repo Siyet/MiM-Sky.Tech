@@ -23,3 +23,15 @@ order_router.get('/order/:id', function (req, res) {
 .summary('get order by id')
 .description('Get order by id')
 .tag('Order')
+
+order_router.post('/order', function(req,res){
+    let new_order = JSON.stringify(req.body)
+    if(new_order._id){ delete new_order._id}
+    let result_save = collection.save(new_order)
+    res.send(result_save)
+})
+.body('JSON', 'This implies JSON.')
+.response(['application/json'], 'Order')
+.summary('Create new order')
+.description('Create new order')
+.tag('Order')
