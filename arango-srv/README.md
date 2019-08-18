@@ -1,7 +1,6 @@
 # api
 
 ## TODO
-add helicopters
 add info about route
 add edge who connects helicopter with order
 
