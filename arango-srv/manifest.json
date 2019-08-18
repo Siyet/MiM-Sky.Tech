@@ -8,6 +8,7 @@
   "version": "0.0.0",
   "tests": "test/**/*.js",
   "scripts":{
-    "setup":"scripts/setup.js"
+    "setup":"scripts/setup.js",
+    "find_path":"scripts/find_path.js"
   }
 }
