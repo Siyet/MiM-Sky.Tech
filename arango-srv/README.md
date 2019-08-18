@@ -1,9 +1,8 @@
 # api
 
-## TODO
-add info about route
-add edge who connects helicopter with order
-find by address
+## Скриптецкие
+штоб запулить в бд севис, нужно перейти в папку с севисами 
+`foxx upgrade --dev --server dev /dev-api`
 
 ## License
 

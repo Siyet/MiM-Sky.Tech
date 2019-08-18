@@ -8,7 +8,6 @@ const collection = db._collection(collectionName)
 const forbidden_zone = db._collection('forbidden_zone')
 module.exports = route_router
 
-
 route_router.get('/route/:id', function (req, res) {
     try {
         const data = collection.document(req.pathParams.id);
@@ -23,6 +22,14 @@ route_router.get('/route/:id', function (req, res) {
 .response(['application/json'], 'Route')
 .summary('get route by id')
 .description('Get reoute by id')
+.tag('Route')
+
+route_router.get('/route', function (req, res) {
+    res.send(query`for i in ${collection} return i`)
+})
+.response(['application/json'], 'Routes')
+.summary('get all route')
+.description('Get all reoute')
 .tag('Route')
 
 
@@ -106,6 +113,7 @@ route_router.post('/route/find', function(req,res){
     let save_result = query`insert {
         from:${data.start},
         to:${data.end},
+        level:${Math.floor((Math.random() * 2) + 3)}
         geo:GEO_LINESTRING(${result})
     } into ${collection}`
     
