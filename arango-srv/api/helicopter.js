@@ -18,3 +18,7 @@ helipad_router.get('/helicopter/:id', function (req, res){
         res.throw(404, 'The entry does not exist', e);
     }
 })
+.response(['application/json'], 'helicopter')
+.summary('get helicopter by id')
+.description('Get helicopter by id')
+.tag('Helicopter')
