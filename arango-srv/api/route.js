@@ -2,13 +2,13 @@ const createRouter = require('@arangodb/foxx/router');
 const { db, query } = require("@arangodb");
 const request = require("@arangodb/request");
 
-const order_router = createRouter();
+const route_router = createRouter();
 const collectionName = 'route'
 const collection = db._collection(collectionName)
-module.exports = order_router
+module.exports = route_router
 
 
-order_router.get('/route/:id', function (req, res) {
+route_router.get('/route/:id', function (req, res) {
     try {
         const data = collection.document(req.pathParams.id);
         res.send(data)
