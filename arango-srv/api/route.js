@@ -82,26 +82,21 @@ route_router.post('/route/find', function(req,res){
     for (let i = 0; i < path.length; i++) {
         let curr_point = path[i]
         if(current_x < curr_point[0]){//
-            if(x)path_w -= delta_w;
-            else path_w += delta_w;
-            
+            path_w -= delta_w;
             current_x = curr_point[0]
         }
         else if(current_x > curr_point[0]){
-            if(x)path_w += delta_w;
-            else path_w -= delta_w;
+            path_w += delta_w;
             
             current_x = curr_point[0]
         }
 
         if(current_y < curr_point[1]){//
-            if(y)path_h -= delta_h
-            else path_h += delta_h
+            path_h -= delta_h
             
             current_y = curr_point[1]
         } else if(current_y > curr_point[1]){
-            if(y)path_h -= delta_h
-            else path_h += delta_h
+            path_h += delta_h
             
             current_y = curr_point[1]
         }
