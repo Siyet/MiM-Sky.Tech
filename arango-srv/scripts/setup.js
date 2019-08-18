@@ -1,5 +1,9 @@
 const { db } = require("@arangodb");
-const collectionName = 'helipads'
-if (!db._collection(collectionName)) {
-    db._createDocumentCollection(collectionName);
+
+if (!db._collection('helipads')) {
+    db._createDocumentCollection('helipads');
+}
+
+if (!db._collection('helicopter')) {
+    db._createDocumentCollection('helicopter');
 }
