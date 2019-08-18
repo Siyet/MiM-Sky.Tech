@@ -10,7 +10,7 @@ module.exports = fz_router
 fz_router.get('/fz/:lat/:lon', function(req,res){
     let lat = req.pathParams.lat
     let lon = req.pathParams.lon
-    query`for i in forbidden_zone filter IS_IN_POLYGON(i.path, ${lat}, ${lon}) return i`
+    res.send(query`for i in forbidden_zone filter IS_IN_POLYGON(i.path, ${lat}, ${lon}) return i`);
 })
 .response(['application/json'], 'FZ')
 .summary('get forbidden zone by lat,lon')
