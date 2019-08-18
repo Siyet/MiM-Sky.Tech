@@ -1,23 +1,6 @@
-const PF = require('pathfinding');
-// var grid = new PF.Grid(100, 100); 
-// grid.setWalkableAt(0, 1, false);
-
-// let matrix = []
-// for (let i = 0; i < 100; i++) {
-//     let sub = []
-//     for (let j = 0; j < 100; j++) {
-//         sub.push(Math.floor((Math.random() * 1)))
-//     }
-//     matrix.push(sub)
-    
-// }
-
-
-// const request = require('@arangodb/request')
+const PF = require('./PathFinding/PathFinding');
 
 function getWeight(lat, lon){
-    // let response = request.get('')
-    // return Math.floor((Math.random() * 1))
     return 0
 }
 
@@ -45,4 +28,6 @@ for (let i = 0; i < 100; i++) {
 let grid = new PF.Grid(matrix);
 let finder = new PF.AStarFinder();
 
-return finder.findPath(0, 0, 99, 99, grid)
+let path = finder.findPath(0, 0, 99, 99, grid)
+
+console.log(path)

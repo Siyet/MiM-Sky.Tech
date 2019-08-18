@@ -23,12 +23,12 @@ address_router.get('/address/id/:id', function(req, res){
 .description('Get address by id')
 .tag('Address')
 
-// address_router.post('/address', function(req,res){
-//     let result = query`FOR doc IN FULLTEXT(${collection}, "title", ${JSON.stringify(req.body)},20) RETURN doc`
-//     res.send(result);
-// })
-// .body(['text'],"string")
-// .response(['application/json'], 'finded ids')
-// .summary('Full test search')
-// .description('Full test search')
-// .tag('Address')
+address_router.post('/address', function(req,res){
+    let result = query`FOR doc IN FULLTEXT(${collection}, "title", ${req.body},20) RETURN doc`
+    res.send(result);
+})
+.body(['text'],"string")
+.response(['application/json'], 'finded ids')
+.summary('Full test search')
+.description('Full test search')
+.tag('Address')
