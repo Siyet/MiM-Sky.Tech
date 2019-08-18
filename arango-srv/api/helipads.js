@@ -13,7 +13,8 @@ helipad_router.get('/helipads', function (req, res) {
   })
   .response(['application/json'], 'helipads')
   .summary('get all helipads')
-  .description('Get all helipads');
+  .description('Get all helipads')
+  .tag('Helipad')
 
   
 helipad_router.get('/helipads/:id', function (req, res) {
@@ -29,7 +30,8 @@ helipad_router.get('/helipads/:id', function (req, res) {
 })
 .response(['application/json'], 'helipad')
 .summary('get helipad by id')
-.description('Get helipad by id');
+.description('Get helipad by id')
+.tag('Helipad')
 
 helipad_router.get('/helipads/min', function(req, res){
     let helipads = query`for i in ${collection} return {id:i._key, geopoint:i.position}`
@@ -37,16 +39,17 @@ helipad_router.get('/helipads/min', function(req, res){
 })
 .response(['application/json'], 'helipads')
 .summary('get all helipads in minimalist style')
-.description('Get all helipads in minimalist style');
+.description('Get all helipads in minimalist style')
+.tag('Helipad')
 
 helipad_router.get('/helipads/:id/info', function(req, res){
     const response = request.get(`https://fpln.ru/api/landing/${req.pathParams.id}`);
     if (response.status < 400) {
         res.send(response.json)
     }
-    // let helipads = query`for i in ${collection} return {id:i._key, geopoint:i.position}`
-    // res.send(helipads);
 })
 .response(['application/json'], 'helipads')
 .summary('get all helipads')
-.description('Get all helipads');
+.description('Get all helipads')
+.pathParam('id', 'params.fpln_nid')
+.tag('Helipad')
