@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <link rel="shortcut icon" href="imgs/ss.ico" type="image/x-icon" />
+  <link href="http://allfont.ru/allfont.css?fonts=railway" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+  <link href="https://api.tiles.mapbox.com/mapbox-gl-js/v1.2.1/mapbox-gl.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet" type="text/css" />
+  <title>DronAir</title>
+</head>
+
+<body>
+  <div id="map"></div>
+  <header>
+    <h1>DroneAir</h1>
+  </header>
+  <footer>
+
+    <div class="sub-footer row">
+      <div class="cw input-field col s3">
+        <input type="text" id="from" class="autocomplete" />
+        <label for="from">• Текущее положение</label>
+      </div>
+      <div class="cw input-field col s3">
+        <input type="text" id="to" class="autocomplete" />
+        <label for="to">• Пункт назначения</label>
+      </div>
+      <div class="cw input-field col s1">
+        <input type="text" id="date" class="datepicker" />
+        <label for="date">Дата</label>
+      </div>
+      <div class="cw input-field col s1">
+        <input type="text" id="time" class="timepicker" />
+        <label for="time">Время</label>
+      </div>
+      <div class="cw input-field col s1">
+        <input type="number" min="1" max="4" id="count" class="timepicker" />
+        <label for="count">Мест</label>
+      </div>
+      <div class="cw input-field col s1">
+        <select>
+          <option value="" selected>не выбран</option>
+          <option value="1">Эконом</option>
+          <option value="2">Премиум</option>
+        </select>
+        <label>Класс</label>
+      </div>
+      <div class="col s2">
+        <a id="btn-calc" class="waves-effect waves-light btn">Рассчитать</a>
+      </div>
+    </div>
+    <a id="btn-up" class="btn-floating btn-large white waves-effect waves-dark"><i
+        class="material-icons">expand_less</i></a>
+    <div class="row footer-card">
+      <div class="form col s12">
+        <ul class="tabs">
+          <li class="tab col s2"><a class="active" href="#p1">Airbus Vahana</a></li>
+          <li class="tab col s2" title="Аппарат, временно, недоступен"><a href="#p2 disabled">Boeing PAV</a></li>
+          <li class="tab col s2" title="Аппарат, временно, недоступен"><a href="#p3 disabled">Bell Nexus</a></li>
+          <li class="tab col s2" title="Аппарат, временно, недоступен"><a href="#p4 disabled">BlackFly</a></li>
+          <li class="tab col s2" title="Аппарат, временно, недоступен"><a href="#p5 disabled">EmbraerX</a></li>
+        </ul>
+      </div>
+      <div id="p1" class="col s12">
+        <div class="col s5">
+          <p class="path">Выберите маршрут...</p>
+          <p class="datetime"><span class="date"></span>&nbsp;<span class="time"></span></p>
+          <p class="description">The Airbus Vahana is an electric-powered eight-propeller vertical take-off and landing
+            aircraft prototype financed by A³ by Airbus and Airbus Urban Mobility. Vahana project started in 2016 as one
+            of the first projects at A³ (pronounced “A-cubed”), the advanced projects and partnerships outpost of Airbus
+            Group in Silicon Valley.</p>
+        </div>
+        <div class="col s5"><img src="imgs/heli.png" alt="" style="margin:8px 0 16px"></div>
+        <div class="col s2 stats">
+          <div style="font-size:20px">Вместимость</div>
+          <div class="circle">
+            <big>2</big>
+            <span>Человека</span>
+          </div>
+          <br>
+          <div style="font-size:20px">Дальность полета</div>
+          <div class="circle">
+            <big>?</big>
+            <span>км</span>
+          </div>
+        </div>
+
+      </div>
+      <div id="p2" class="col s12">Boeing PAV</div>
+      <div id="p3" class="col s12">Bell Nexus</div>
+      <div id="p4" class="col s12">BlackFly</div>
+      <div id="p4" class="col s12">EmbraerX</div>
+      <div class="footer">
+        <div class="row">
+          <div class="col s4">Количество свободных мест: <span></span></div>
+          <div class="col s3">Время полёта: <span id="period_time"></span></div>
+          <div class="col s3">Стоимость: <span id="cost"></span></div>
+          <div class="col s2">
+            <a id="btn-submit" class="waves-effect waves-light btn">Заказать</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </footer>
+
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v1.2.1/mapbox-gl.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+  <script src="js/main.js"></script>
+</body>
+
+</html>
