@@ -70,7 +70,7 @@
     $('#btn-up').find('i').text(is_up ? 'expand_less' : 'expand_more')
     is_up = !is_up
   })
-  $(document).ready(function () {
+  $(document).ready(() => {
     $('.tabs').tabs();
   });
   document.addEventListener('DOMContentLoaded', () => {
@@ -87,7 +87,8 @@
     style: 'mapbox://styles/mapbox/light-v10',
     center: [37.64957747842482, 55.732901766080545],
     zoom: 15,
-    antialias: true
+    antialias: true,
+    interactive: true
   });
   map.on('load', async () => {
     let layers = map.getStyle().layers;
@@ -99,14 +100,67 @@
         break;
       }
     }
-    // new mapboxgl.Marker()
-    // Mapbox.Marker()
-    //   .setLngLat([37.6499424, 55.7331183])
-    //   .addTo(map);
     let resp = await axios.get(
       "http://tseluyko.ru:8529/_db/sky_tech/api/helipads"
     );
     console.log(resp);
+    // new mapboxgl.Marker()
+    // Mapbox.Marker()
+    //   .setLngLat([37.6499424, 55.7331183])
+    //   .addTo(map);
+    map.addSource("markers", {
+      "type": "geojson",
+      "data": {
+        "type": "FeatureCollection",
+        "features": [{
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [7.4368330, 46.9516040]
+          },
+          "properties": {
+            "title": "Duotones",
+            "marker-symbol": "marker",
+          }
+        }]
+      }
+    });
+
+    map.addLayer({
+      "id": "markers",
+      "type": "symbol",
+      "source": "markers",
+      "layout": {
+        "icon-image": "{marker-symbol}-15",
+        "icon-size": 3
+      }
+    });
+    let lines = await this.axios.get('http://tseluyko.ru:8529/_db/sky_tech/dev-api/route')
+    console.log("lines", lines)
+    // map.addLayer({
+    //   "id": "route",
+    //   "type": "line",
+    //   "source": {
+    //     "type": "geojson",
+    //     "data": {
+    //       "type": "Feature",
+    //       "properties": {},
+    //       "geometry": {
+    //         "type": "LineString",
+    //         "coordinates": await axios.get('http://tseluyko.ru:8529/_db/sky_tech/dev-api/route/1795484').then(_resp => _resp.data.geo.coordinates)
+    //       }
+    //     }
+    //   },
+    //   "layout": {
+    //     "line-join": "round",
+    //     "line-cap": "round"
+    //   },
+    //   "paint": {
+    //     "line-color": "#888",
+    //     "line-width": 4
+    //   }
+    // });
+
 
     map.addLayer({
         id: "3d-buildings",
@@ -143,34 +197,37 @@
       },
       labelLayerId
     );
-    map.addLayer({
-      id: "points",
-      type: "symbol",
-      source: {
-        type: "geojson",
-        data: {
-          type: "FeatureCollection",
-          features: resp.data.map(_point => ({
-            type: "Feature",
-            geometry: {
-              type: "Point",
-              coordinates: [_point.position[1], _point.position[0]]
-            },
-            properties: {
-              title: _point.name,
-              icon: "monument"
-            }
-          }))
-        }
-      },
-      layout: {
-        "icon-image": "{icon}-15",
-        "text-field": "{title}",
-        "text-offset": [0, 0.6],
-        "text-anchor": "top",
-        "text-size": 13,
-        "icon-size": 1.2
-      }
-    });
+    // map.addLayer({
+    //   id: "points",
+    //   type: "symbol",
+    //   source: {
+    //     type: "geojson",
+    //     data: {
+    //       type: "FeatureCollection",
+    //       features: resp.data.map(_point => ({
+    //         type: "Feature",
+    //         geometry: {
+    //           type: "Point",
+    //           coordinates: [_point.geo.coordinates[0], _point.geo.coordinates[1]]
+    //         },
+    //         properties: {
+    //           title: _point.name,
+    //           icon: {
+    //             iconSize: [48, 48], // size of the icon
+    //             iconAnchor: [24, 24], // point of the icon which will correspond to marker's location
+    //             popupAnchor: [0, -24], // point from which the popup should open relative to the iconAnchor
+    //             className: 'helipad-marker'
+    //           }
+    //         }
+    //       }))
+    //     }
+    //   },
+    //   layout: {
+    //     "text-field": "{title}",
+    //     "text-offset": [0, 0.6],
+    //     "text-anchor": "top",
+    //     "text-size": 13
+    //   }
+    // });
   })
 })()

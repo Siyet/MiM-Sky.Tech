@@ -39,6 +39,7 @@ footer {
 
 .footer-card {
   width: 74%;
+  margin-bottom: 0
 }
 
 h1 {
@@ -125,6 +126,7 @@ h1 {
 .footer {
   height: 104px;
   background-color: #5879EA;
+  color: white;
 }
 
 .circle {
@@ -137,7 +139,7 @@ h1 {
 
 #p1 {
   background-color: #F7F8FE;
-  padding-top: 8px;
+  padding: 50px 16px;
 }
 
 #p2,
@@ -159,4 +161,26 @@ h1 {
 .stats big {
   margin: 12px 0 -8px;
   font-size: 30px;
+}
+
+.footer.row.footer-card .ff {
+  text-align: center;
+  padding: 40px 0;
+}
+
+.tabs .tab a {
+  color: #777777;
+}
+
+.tabs .tab a:hover,
+.tabs .tab a.active {
+  color: #5879EA;
+  background-color: #F7F8FE;
+}
+
+.helipad-marker {
+  background-image: url('../imgs/helipad.svg');
+  background-size: cover;
+  width: 48px;
+  height: 48px;
 }
